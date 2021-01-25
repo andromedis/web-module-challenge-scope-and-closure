@@ -82,13 +82,13 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(callback, innings){
+function finalScore(inningCB, numOfInnings){
   let home = 0, away = 0;
-  for (let i = 0; i < innings; i++) {
-    home += callback();
-    away += callback();
+  for (let i = 0; i < numOfInnings; i++) {
+    home += inningCB();
+    away += inningCB();
   }
-  return {"Home": home, "Away": away}; // CHECK: do "Home" and "Away" need quotes?
+  return {Home: home, Away: away};
 }
 
 
@@ -97,10 +97,9 @@ Use the getInningScore() function below to do the following:
   1. Receive a callback function - you will pass in the inning function from task 2 as your argument 
   2. Return an object with a score for home and a score for away that populates from invoking the inning callback function */
 
-function getInningScore(callback) {
-  return {"Home": callback(), "Away": callback()}; // CHECK: same as in T3
+function getInningScore(inningCB) {
+  return {Home: inningCB(), Away: inningCB()};
 }
-
 
 
 /* ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️

@@ -28,11 +28,32 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
+
+  counter1 is a reference to the counterMaker() function, which returns an incremented 
+  version of the variable count declared within counterMaker. counter2() is a single function
+  that returns an incremented version of a globally scoped count variable, declared outside
+  of counter2().
   
   2. Which of the two uses a closure? How can you tell?
+
+  counter1 uses a closure, which allows it to manipulate the value of count declared inside
+  counterMaker, even though it was not declared within counter1's scope. When counter1() is
+  called as a function, it retains the lexical environment inside counterMaker(), allowing 
+  persistence of the local count variable (and it's incrementation) between each call. If
+  counterMaker() were altered to take a parameter n, with a function signature counterMaker(n),
+  and the local count variable were set to n, counterMaker(n) could make any number of different
+  counters with the same behavior but different initial numbers to count from, because the
+  resulting counters would retain their own lexical enviroments based on the value passed as n.
   
   3. In what scenario would the counter1 code be preferable? In what scenario would 
-     counter2 be better?  
+  counter2 be better?  
+  
+  counter1 code would be preferable when you might want to declare more than one counter object
+  using the same counterMaker() function. These different objects could then be incremented
+  independently from one another at different points or frequencies within the program. Counter2
+  code would be preferable when only one counter will be needed, and would ideally be used inside
+  a function or block, to keep the count variable non-global.
+
 */
 
 // counter1 code
@@ -51,6 +72,7 @@ let count = 0;
 function counter2() {
   return count++;
 }
+
 
 
 /* ⚾️⚾️⚾️ Task 2: inning() ⚾️⚾️⚾️

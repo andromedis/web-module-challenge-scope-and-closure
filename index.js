@@ -82,9 +82,15 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*code Here*/){
-  /*Code Here*/
+function finalScore(inningCallback, innings){
+  let home =, away = 0;
+  for (let inning = 0; inning < innings; inning++) {
+    home += inningCallback();
+    away += inningCallback();
+  }
+  return {"Home": home, "Away": away}; // CHECK: do "Home" and "Away" need quotes?
 }
+
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:

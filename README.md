@@ -43,13 +43,18 @@ Find the file `index.js` and complete the tasks.
 Edit the `ReadMe` file with your answers.
 
 1. In your own words, define closure (1-2 sentences).
+
+Closure is a function that looks outside it's scope to find the value of a reference used
+but not defined in the function. It combines the function itself with the context surrounding
+the function, which includes that out-of-scope information.
+
 2. Study the following code, then answer the questions below.
 
 ```js
 function personalDice(name){
   return function(){
       // generate random number between 1 and 6
-    const newRoll = Math.floor(Math.random() * 6);
+    const newRoll = Math.floor(Math.random() * 6); // Needs a + 1 at the end, this generates between 0 and 5 inclusive
     console.log(`${name} rolled a ${newRoll}`)
   }
 }
@@ -64,8 +69,24 @@ dansRoll();
 ```
 
 a. Where is closure used in this code? How can you tell?
+
+Closure is used in line 58, where the unnamed function inside `personalDice(name)` logs
+a string containing `name` and `newRoll`. `newRoll` is defined within the unnamed function, but
+`name` is not. The closure will look outside the unnamed function to the `name` parameter passed
+to `personalDice(name)`, and use that parameter to form the string.
+
 b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
+
+The console output of `dansRoll` will always start with "Dan rolled a " but then will have a number
+which might be the same the next time it is called, or might be different, because it is randomly 
+generated each time the function is called. 
+
 c. What is the lexical scope of `newRoll`? 
+
+The lexical scope of `newRoll` is within the unnamed function defined on lines 55-59. It could not
+be accessed within the parent function `personalDice(name)` because its scope does not reach outside
+the unnamed child function.
+
 
 
 ### Task 3 - Stretch Goals
